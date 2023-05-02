@@ -87,9 +87,9 @@ This is My ToDo List Project of Module 2 in Microverse which is A Dynamic and Re
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> <a href="" name="live-demo">Live Demo</a>
+> <a href="" name="live-demo"></a>
 
-> <a href="">Project Presentation in Loom</a>
+> <a href="">Coming Soon!</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,9 +172,9 @@ To run the project, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Coming Soon
-- Coming Soon
-- Coming Soon
+- Add/Remove Todo items
+- User Authentication/Authorization
+- Local Storage and User Profile
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
