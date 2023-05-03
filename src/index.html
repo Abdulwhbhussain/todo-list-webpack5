@@ -9,20 +9,21 @@
     <!-- ToDo List Container -->
     <div id="todo-list-container">
         <div id="todo-title-element" class="todo-element-padding">
-            <p>ToDo List</p>
+            <p id="todo-title">Today's To Do</p>
+            <i class="gg-sync"></i>
         </div>
         <hr>
         <div id="todo-input-element" class="todo-element-padding">
-            <input></input>
+            <input id="todo-input" class="ellipsis" placeholder="Add to your list..." type="text">
+            <span>&#8629;</span>
         </div>
         <hr>
         <div id="todo-list-element">
-            <span class="todo-element-padding">ToDo List</span>
-            <hr>
+    
         </div>
-        <div id="todo-footer-button" class="todo-element-padding">
-            <p>ToDo List</p>
-        </div>
+        <button id="todo-footer-button" type="button" class="link-button js-clear-completed">Clear all completed</button>
     </div>
+    
+    
 </body>
 </html>
