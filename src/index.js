@@ -139,19 +139,11 @@ document.getElementById('todo-enter').addEventListener('click', () => {
   InputElementTodo.value = '';
   localStorage.setItem('input', InputElementTodo.value);
 
-  console.log(todoArray.length + 'Before push');
-
   todoArray.push({
     description: descriptionTodo,
     completed: false,
     index: todoArray.length === 0 ? 1 : todoArray.length + 1,
   });
-
-  console.log(todoArray.length + 'After push');
-  console.log(
-    todoArray[todoArray.length - 1].index +
-      'Index After the Push Given to the todo function',
-  );
 
   localStorage.setItem('todoList', JSON.stringify(todoArray));
   todoListRender(descriptionTodo, false, todoArray[todoArray.length - 1].index);
