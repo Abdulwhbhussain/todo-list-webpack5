@@ -273,7 +273,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
     todoListItemContainer.classList.add('todo-item-container');
     todoListItemContainer.setAttribute(
       'id',
-      `todo-list-container-${todo.index}`
+      `todo-list-container-${todo.index}`,
     );
 
     const todoListCheck = document.createElement('input');
