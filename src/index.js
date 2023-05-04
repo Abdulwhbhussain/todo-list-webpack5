@@ -1,4 +1,7 @@
 import './style.css';
+import todoAdd from './modules/add';
+import todoRemove from './modules/remove';
+import todoEdit from './modules/edit';
 
 const InputElementTodo = document.getElementById('todo-input');
 
@@ -23,6 +26,7 @@ if (!localStorage.getItem('todoList')) {
 }
 
 const todoListRender = (desc, complete, indx) => {
+  console.log('todoListRender function Index: ' + indx);
   const todoListItemContainer = document.createElement('div');
   todoListItemContainer.classList.add('todo-element-padding');
   todoListItemContainer.classList.add('todo-item-container');
@@ -31,18 +35,15 @@ const todoListRender = (desc, complete, indx) => {
   const todoListCheck = document.createElement('input');
   todoListCheck.setAttribute('type', 'checkbox');
   todoListCheck.setAttribute('id', `todo-list-check-${indx}`);
+  todoListCheck.classList.add('todo-list-check');
   todoListItemContainer.appendChild(todoListCheck);
-
-  console.log(todoListCheck.id);
 
   const todoListElement = document.createElement('span');
   todoListElement.classList.add('ellipsis', 'edit-todo');
-  todoListCheck.setAttribute('id', `todo-list-desc-${indx}`);
+  todoListElement.setAttribute('id', `todo-list-desc-${indx}`);
   todoListElement.innerText = desc;
 
   todoListItemContainer.appendChild(todoListElement);
-
-  console.log(indx);
 
   const threeDotIcon = document.createElement('span');
   threeDotIcon.classList.add('hover-three-dot');
@@ -61,19 +62,17 @@ const todoListRender = (desc, complete, indx) => {
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
 
-  console.log(todoListElement.id);
-
   todoListCheck.addEventListener('click', () => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
       todoListCheck.nextElementSibling.style.opacity = '0.5';
 
-      todoArray[indx].completed = true;
+      todoArray[indx - 1].completed = true;
     } else {
       todoListCheck.nextElementSibling.style.textDecoration = 'none';
       todoListCheck.nextElementSibling.style.opacity = '1';
 
-      todoArray[indx].completed = false;
+      todoArray[indx - 1].completed = false;
     }
     localStorage.setItem('todoList', JSON.stringify(todoArray));
   });
@@ -83,8 +82,6 @@ const todoListRender = (desc, complete, indx) => {
   todoListElement.parentElement.appendChild(bin);
 
   todoListElement.addEventListener('click', () => {
-    console.log(todoListElement.getAttribute('data-clicked'));
-
     if (!todoListElement.getAttribute('data-clicked')) {
       todoListElement.setAttribute('data-clicked', 'true');
 
@@ -97,13 +94,32 @@ const todoListRender = (desc, complete, indx) => {
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
       bin.onclick = () => {
+        todoListElement.contentEditable = false;
+        todoListElement.classList.add('ellipsis');
+        todoListElement.parentElement.style.backgroundColor = 'white';
+        todoListElement.style.cursor = 'pointer';
+        todoListElement.nextElementSibling.style.display = 'inline';
+        bin.innerHTML = '';
+        bin.style.display = 'none';
+
         document.querySelector(`#todo-list-container-${indx} + hr`).remove();
         document.getElementById(`todo-list-container-${indx}`).remove();
 
-        todoArray.splice(indx, 1);
+        todoArray = todoAdd(todoArray, indx);
         todoArray.forEach((todo, ind) => {
-          todo.index = ind;
+          todo.index = ind + 1;
+
+          document
+            .getElementsByClassName('todo-item-container')
+            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-list-check')
+            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+          document
+            .getElementsByClassName('edit-todo')
+            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
         });
+
         localStorage.setItem('todoList', JSON.stringify(todoArray));
       };
     } else {
@@ -119,13 +135,7 @@ const todoListRender = (desc, complete, indx) => {
 
       const indexOfTodoElement = indx;
 
-      console.log(indexOfTodoElement);
-
-      todoArray.forEach((todo) => {
-        if (todo.index === Number(indexOfTodoElement)) {
-          todo.description = todoListElement.innerText;
-        }
-      });
+      todoEdit(todoArray, indexOfTodoElement, todoListElement.innerText);
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
   });
@@ -135,13 +145,23 @@ document.getElementById('todo-enter').addEventListener('click', () => {
   const descriptionTodo = InputElementTodo.value;
   InputElementTodo.value = '';
   localStorage.setItem('input', InputElementTodo.value);
+
+  console.log(todoArray.length + 'Before push');
+
   todoArray.push({
     description: descriptionTodo,
     completed: false,
-    index: todoArray.length,
+    index: todoArray.length === 0 ? 1 : todoArray.length + 1,
   });
+
+  console.log(todoArray.length + 'After push');
+  console.log(
+    todoArray[todoArray.length - 1].index +
+      'Index After the Push Given to the todo function',
+  );
+
   localStorage.setItem('todoList', JSON.stringify(todoArray));
-  todoListRender(descriptionTodo, false, todoArray.length - 1);
+  todoListRender(descriptionTodo, false, todoArray[todoArray.length - 1].index);
 });
 
 todoArray.forEach((todo) => {
@@ -158,7 +178,7 @@ todoArray.forEach((todo) => {
 
   const todoListElement = document.createElement('span');
   todoListElement.classList.add('ellipsis', 'edit-todo');
-  todoListCheck.setAttribute('id', `todo-list-desc-${todo.index}`);
+  todoListElement.setAttribute('id', `todo-list-desc-${todo.index}`);
   todoListElement.innerText = todo.description;
 
   todoListItemContainer.appendChild(todoListElement);
@@ -205,8 +225,6 @@ todoArray.forEach((todo) => {
   todoListElement.parentElement.appendChild(bin);
 
   todoListElement.addEventListener('click', () => {
-    console.log(todoListElement.getAttribute('data-clicked'));
-
     if (!todoListElement.getAttribute('data-clicked')) {
       todoListElement.setAttribute('data-clicked', 'true');
 
@@ -224,10 +242,21 @@ todoArray.forEach((todo) => {
           .remove();
         document.getElementById(`todo-list-container-${todo.index}`).remove();
 
-        todoArray.splice(todo.index, 1);
+        todoArray = todoAdd(todoArray, todo.index);
         todoArray.forEach((todo, ind) => {
-          todo.index = ind;
+          todo.index = ind + 1;
+
+          document
+            .getElementsByClassName('todo-item-container')
+            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-list-check')
+            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+          document
+            .getElementsByClassName('edit-todo')
+            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
         });
+
         localStorage.setItem('todoList', JSON.stringify(todoArray));
       };
     } else {
@@ -242,8 +271,6 @@ todoArray.forEach((todo) => {
       bin.style.display = 'none';
       const indexOfTodoElement = todo.index;
 
-      console.log(indexOfTodoElement);
-
       todoArray.forEach((tod) => {
         if (tod.index === Number(indexOfTodoElement)) {
           tod.description = todoListElement.innerText;
@@ -255,10 +282,10 @@ todoArray.forEach((todo) => {
 });
 
 document.getElementById('todo-footer-button').addEventListener('click', () => {
-  const todoListUpdate = todoArray.filter((todo) => todo.completed === false);
+  const todoListUpdate = todoRemove(todoArray);
 
   for (let i = 0; i < todoListUpdate.length; i += 1) {
-    todoListUpdate[i].index = i;
+    todoListUpdate[i].index = i + 1;
   }
 
   todoArray = todoListUpdate;
@@ -284,7 +311,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
 
     const todoListElement = document.createElement('span');
     todoListElement.classList.add('ellipsis', 'edit-todo');
-    todoListCheck.setAttribute('id', `todo-list-desc-${todo.index}`);
+    todoListElement.setAttribute('id', `todo-list-desc-${todo.index}`);
     todoListElement.innerText = todo.description;
 
     todoListItemContainer.appendChild(todoListElement);
@@ -331,8 +358,6 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
     todoListElement.parentElement.appendChild(bin);
 
     todoListElement.addEventListener('click', () => {
-      console.log(todoListElement.getAttribute('data-clicked'));
-
       if (!todoListElement.getAttribute('data-clicked')) {
         todoListElement.setAttribute('data-clicked', 'true');
 
@@ -350,9 +375,19 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
             .remove();
           document.getElementById(`todo-list-container-${todo.index}`).remove();
 
-          todoArray.splice(todo.index, 1);
+          todoArray = todoAdd(todoArray, todo.index);
           todoArray.forEach((todo, ind) => {
-            todo.index = ind;
+            todo.index = ind + 1;
+
+            document
+              .getElementsByClassName('todo-item-container')
+              [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+            document
+              .getElementsByClassName('todo-list-check')
+              [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+            document
+              .getElementsByClassName('edit-todo')
+              [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
           });
           localStorage.setItem('todoList', JSON.stringify(todoArray));
         };
@@ -367,8 +402,6 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         bin.innerHTML = '';
         bin.style.display = 'none';
         const indexOfTodoElement = todo.index;
-
-        console.log(indexOfTodoElement);
 
         todoArray.forEach((tod) => {
           if (tod.index === Number(indexOfTodoElement)) {
