@@ -89,6 +89,7 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.classList.remove('ellipsis');
       todoListElement.focus();
       todoListElement.parentElement.style.backgroundColor = '#f6d788';
+      todoListElement.style.cursor = 'text';
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
@@ -98,6 +99,7 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.contentEditable = false;
       todoListElement.classList.add('ellipsis');
       todoListElement.parentElement.style.backgroundColor = 'white';
+      todoListElement.style.cursor = 'pointer';
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
@@ -204,6 +206,7 @@ todoArray.forEach((todo) => {
       todoListElement.classList.remove('ellipsis');
       todoListElement.focus();
       todoListElement.parentElement.style.backgroundColor = '#f6d788';
+      todoListElement.style.cursor = 'text';
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
@@ -213,6 +216,7 @@ todoArray.forEach((todo) => {
       todoListElement.contentEditable = false;
       todoListElement.classList.add('ellipsis');
       todoListElement.parentElement.style.backgroundColor = 'white';
+      todoListElement.style.cursor = 'pointer';
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
@@ -319,6 +323,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.classList.remove('ellipsis');
         todoListElement.focus();
         todoListElement.parentElement.style.backgroundColor = '#f6d788';
+        todoListElement.style.cursor = 'text';
         todoListElement.nextElementSibling.style.display = 'none';
         bin.innerHTML = '&#128465;';
         bin.style.display = 'inline';
@@ -328,6 +333,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.contentEditable = false;
         todoListElement.classList.add('ellipsis');
         todoListElement.parentElement.style.backgroundColor = 'white';
+        todoListElement.style.cursor = 'pointer';
         todoListElement.nextElementSibling.style.display = 'inline';
         bin.innerHTML = '';
         bin.style.display = 'none';
