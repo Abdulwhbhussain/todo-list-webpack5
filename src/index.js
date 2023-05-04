@@ -41,7 +41,7 @@ const todoListRender = (desc, complete, indx) => {
 
   todoListItemContainer.appendChild(todoListElement);
 
-  console.log(todoListElement.id);
+  console.log(indx);
 
   const threeDotIcon = document.createElement('span');
   threeDotIcon.classList.add('hover-three-dot');
@@ -59,6 +59,8 @@ const todoListRender = (desc, complete, indx) => {
   document
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
+
+  console.log(todoListElement.id);
 
   todoListCheck.addEventListener('click', () => {
     if (todoListCheck.checked === true) {
@@ -173,9 +175,9 @@ todoArray.forEach((todo) => {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
       todoListCheck.nextElementSibling.style.opacity = '0.5';
       const indexOfTodoElement = todoListCheck.id.split('').pop();
-      todoArray.forEach((todo) => {
-        if (todo.index === Number(indexOfTodoElement)) {
-          todo.completed = true;
+      todoArray.forEach((tod) => {
+        if (tod.index === Number(indexOfTodoElement)) {
+          tod.completed = true;
         }
       });
       localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -183,9 +185,9 @@ todoArray.forEach((todo) => {
       todoListCheck.nextElementSibling.style.textDecoration = 'none';
       todoListCheck.nextElementSibling.style.opacity = '1';
       const indexOfTodoElement = todoListCheck.id.split('').pop();
-      todoArray.forEach((todo) => {
-        if (todo.index === Number(indexOfTodoElement)) {
-          todo.completed = false;
+      todoArray.forEach((tod) => {
+        if (tod.index === Number(indexOfTodoElement)) {
+          tod.completed = false;
         }
       });
       localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -224,9 +226,9 @@ todoArray.forEach((todo) => {
 
       console.log(indexOfTodoElement);
 
-      todoArray.forEach((todo) => {
-        if (todo.index === Number(indexOfTodoElement)) {
-          todo.description = todoListElement.innerText;
+      todoArray.forEach((tod) => {
+        if (tod.index === Number(indexOfTodoElement)) {
+          tod.description = todoListElement.innerText;
         }
       });
       localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -290,9 +292,9 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
         todoListCheck.nextElementSibling.style.opacity = '0.5';
         const indexOfTodoElement = todo.index;
-        todoArray.forEach((todo) => {
-          if (todo.index === Number(indexOfTodoElement)) {
-            todo.completed = true;
+        todoArray.forEach((tod) => {
+          if (tod.index === Number(indexOfTodoElement)) {
+            tod.completed = true;
           }
         });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -300,9 +302,9 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListCheck.nextElementSibling.style.textDecoration = 'none';
         todoListCheck.nextElementSibling.style.opacity = '1';
         const indexOfTodoElement = todoListCheck.id.split('').pop();
-        todoArray.forEach((todo) => {
-          if (todo.index === Number(indexOfTodoElement)) {
-            todo.completed = false;
+        todoArray.forEach((tod) => {
+          if (tod.index === Number(indexOfTodoElement)) {
+            tod.completed = false;
           }
         });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -337,13 +339,13 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.nextElementSibling.style.display = 'inline';
         bin.innerHTML = '';
         bin.style.display = 'none';
-        const indexOfTodoElement = todoListElement.id.split('').pop();
+        const indexOfTodoElement = todo.index;
 
         console.log(indexOfTodoElement);
 
-        todoArray.forEach((todo) => {
-          if (todo.index === Number(indexOfTodoElement)) {
-            todo.description = todoListElement.innerText;
+        todoArray.forEach((tod) => {
+          if (tod.index === Number(indexOfTodoElement)) {
+            tod.description = todoListElement.innerText;
           }
         });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
