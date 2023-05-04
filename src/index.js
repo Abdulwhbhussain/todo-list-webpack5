@@ -101,6 +101,9 @@ const todoListRender = (desc, complete, indx) => {
         document.getElementById(`todo-list-container-${indx}`).remove();
 
         todoArray.splice(indx, 1);
+        todoArray.forEach((todo, ind) => {
+          todo.index = ind;
+        });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
       };
     } else {
@@ -113,7 +116,6 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
-      // document.getElementsByClassName('hover-bin').removeEventListener('click');
 
       const indexOfTodoElement = indx;
 
@@ -126,13 +128,6 @@ const todoListRender = (desc, complete, indx) => {
       });
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
-
-    // bin.addEventListener('click', () => {
-    //   bin.parentElement.remove();
-    //   bin.parentElement.nextElementSibling.remove();
-    //   todoArray.splice(indx, 1);
-    //   localStorage.setItem('todoList', JSON.stringify(todoArray));
-    // });
   });
 };
 
@@ -153,6 +148,7 @@ todoArray.forEach((todo) => {
   const todoListItemContainer = document.createElement('div');
   todoListItemContainer.classList.add('todo-element-padding');
   todoListItemContainer.classList.add('todo-item-container');
+  todoListItemContainer.setAttribute('id', `todo-list-container-${todo.index}`);
 
   const todoListCheck = document.createElement('input');
   todoListCheck.setAttribute('type', 'checkbox');
@@ -222,6 +218,18 @@ todoArray.forEach((todo) => {
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
+      bin.onclick = () => {
+        document
+          .querySelector(`#todo-list-container-${todo.index} + hr`)
+          .remove();
+        document.getElementById(`todo-list-container-${todo.index}`).remove();
+
+        todoArray.splice(todo.index, 1);
+        todoArray.forEach((todo, ind) => {
+          todo.index = ind;
+        });
+        localStorage.setItem('todoList', JSON.stringify(todoArray));
+      };
     } else {
       todoListElement.removeAttribute('data-clicked');
 
@@ -243,13 +251,6 @@ todoArray.forEach((todo) => {
       });
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
-
-    // bin.addEventListener('click', () => {
-    //   bin.parentElement.remove();
-    //   bin.parentElement.nextElementSibling.remove();
-    //   todoArray.splice(indx, 1);
-    //   localStorage.setItem('todoList', JSON.stringify(todoArray));
-    // });
   });
 });
 
@@ -270,6 +271,10 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
     const todoListItemContainer = document.createElement('div');
     todoListItemContainer.classList.add('todo-element-padding');
     todoListItemContainer.classList.add('todo-item-container');
+    todoListItemContainer.setAttribute(
+      'id',
+      `todo-list-container-${todo.index}`
+    );
 
     const todoListCheck = document.createElement('input');
     todoListCheck.setAttribute('type', 'checkbox');
@@ -339,6 +344,18 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.nextElementSibling.style.display = 'none';
         bin.innerHTML = '&#128465;';
         bin.style.display = 'inline';
+        bin.onclick = () => {
+          document
+            .querySelector(`#todo-list-container-${todo.index} + hr`)
+            .remove();
+          document.getElementById(`todo-list-container-${todo.index}`).remove();
+
+          todoArray.splice(todo.index, 1);
+          todoArray.forEach((todo, ind) => {
+            todo.index = ind;
+          });
+          localStorage.setItem('todoList', JSON.stringify(todoArray));
+        };
       } else {
         todoListElement.removeAttribute('data-clicked');
 
@@ -360,13 +377,6 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
-
-      // bin.addEventListener('click', () => {
-      //   bin.parentElement.remove();
-      //   bin.parentElement.nextElementSibling.remove();
-      //   todoArray.splice(indx, 1);
-      //   localStorage.setItem('todoList', JSON.stringify(todoArray));
-      // });
     });
   });
 });
