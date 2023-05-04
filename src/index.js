@@ -26,6 +26,7 @@ const todoListRender = (desc, complete, indx) => {
   const todoListItemContainer = document.createElement('div');
   todoListItemContainer.classList.add('todo-element-padding');
   todoListItemContainer.classList.add('todo-item-container');
+  todoListItemContainer.setAttribute('id', `todo-list-container-${indx}`);
 
   const todoListCheck = document.createElement('input');
   todoListCheck.setAttribute('type', 'checkbox');
@@ -95,6 +96,13 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
+      bin.onclick = () => {
+        document.querySelector(`#todo-list-container-${indx} + hr`).remove();
+        document.getElementById(`todo-list-container-${indx}`).remove();
+
+        todoArray.splice(indx, 1);
+        localStorage.setItem('todoList', JSON.stringify(todoArray));
+      };
     } else {
       todoListElement.removeAttribute('data-clicked');
 
@@ -105,6 +113,8 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
+      // document.getElementsByClassName('hover-bin').removeEventListener('click');
+
       const indexOfTodoElement = indx;
 
       console.log(indexOfTodoElement);
