@@ -59,6 +59,11 @@ div {
   font-size: 1rem;
 }
 
+#todo-footer-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 /* Sync Icon */
 
 .gg-sync {
@@ -137,6 +142,7 @@ div {
   overflow: hidden;
   resize: none;
   font-size: 1rem;
+  cursor: auto;
 }
 
 .ellipsis {
@@ -144,3 +150,20 @@ div {
   white-space: nowrap; /* keeps the text in a single line */
   overflow: hidden; /* keeps the element from overflowing its parent */
 }
+
+#todo-enter {
+  cursor: pointer;
+}
+
+/* Apply Grid on the todo ITEM container */
+
+.todo-item-container {
+  display: grid;
+  grid-template-columns: 6% 84% 10%;
+  grid-template-rows: auto;
+  column-gap: 13px;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+}
+
