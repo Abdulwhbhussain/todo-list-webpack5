@@ -32,15 +32,25 @@ const todoListRender = (desc, complete, indx) => {
   todoListCheck.setAttribute('id', `todo-list-check-${indx}`);
   todoListItemContainer.appendChild(todoListCheck);
 
+  console.log(todoListCheck.id);
+
   const todoListElement = document.createElement('span');
-  todoListElement.classList.add('ellipsis');
+  todoListElement.classList.add('ellipsis', 'edit-todo');
+  todoListCheck.setAttribute('id', `todo-list-desc-${indx}`);
   todoListElement.innerText = desc;
 
   todoListItemContainer.appendChild(todoListElement);
 
+  console.log(todoListElement.id);
+
   const threeDotIcon = document.createElement('span');
+  threeDotIcon.classList.add('hover-three-dot');
   threeDotIcon.innerHTML = '&#8942;';
   todoListItemContainer.appendChild(threeDotIcon);
+
+  // threeDotIcon.addEventListener('click', () => {
+  //   threeDotIcon.parentElement.style.backgroundColor = '#f2f2f2';
+  // });
 
   document
     .getElementById('todo-list-element')
@@ -63,6 +73,52 @@ const todoListRender = (desc, complete, indx) => {
       todoArray[indx].completed = false;
     }
     localStorage.setItem('todoList', JSON.stringify(todoArray));
+  });
+
+  const bin = document.createElement('span');
+  bin.classList.add('hover-bin');
+  todoListElement.parentElement.appendChild(bin);
+
+  todoListElement.addEventListener('click', () => {
+    console.log(todoListElement.getAttribute('data-clicked'));
+
+    if (!todoListElement.getAttribute('data-clicked')) {
+      todoListElement.setAttribute('data-clicked', 'true');
+
+      todoListElement.contentEditable = true;
+      todoListElement.classList.remove('ellipsis');
+      todoListElement.focus();
+      todoListElement.parentElement.style.backgroundColor = '#f6d788';
+      todoListElement.nextElementSibling.style.display = 'none';
+      bin.innerHTML = '&#128465;';
+      bin.style.display = 'inline';
+    } else {
+      todoListElement.removeAttribute('data-clicked');
+
+      todoListElement.contentEditable = false;
+      todoListElement.classList.add('ellipsis');
+      todoListElement.parentElement.style.backgroundColor = 'white';
+      todoListElement.nextElementSibling.style.display = 'inline';
+      bin.innerHTML = '';
+      bin.style.display = 'none';
+      const indexOfTodoElement = indx;
+
+      console.log(indexOfTodoElement);
+
+      todoArray.forEach((todo) => {
+        if (todo.index === Number(indexOfTodoElement)) {
+          todo.description = todoListElement.innerText;
+        }
+      });
+      localStorage.setItem('todoList', JSON.stringify(todoArray));
+    }
+
+    // bin.addEventListener('click', () => {
+    //   bin.parentElement.remove();
+    //   bin.parentElement.nextElementSibling.remove();
+    //   todoArray.splice(indx, 1);
+    //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+    // });
   });
 };
 
@@ -91,12 +147,14 @@ todoArray.forEach((todo) => {
   todoListItemContainer.appendChild(todoListCheck);
 
   const todoListElement = document.createElement('span');
-  todoListElement.classList.add('ellipsis');
+  todoListElement.classList.add('ellipsis', 'edit-todo');
+  todoListCheck.setAttribute('id', `todo-list-desc-${todo.index}`);
   todoListElement.innerText = todo.description;
 
   todoListItemContainer.appendChild(todoListElement);
 
   const threeDotIcon = document.createElement('span');
+  threeDotIcon.classList.add('hover-three-dot');
   threeDotIcon.innerHTML = '&#8942;';
   todoListItemContainer.appendChild(threeDotIcon);
 
@@ -131,6 +189,52 @@ todoArray.forEach((todo) => {
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
   });
+
+  const bin = document.createElement('span');
+  bin.classList.add('hover-bin');
+  todoListElement.parentElement.appendChild(bin);
+
+  todoListElement.addEventListener('click', () => {
+    console.log(todoListElement.getAttribute('data-clicked'));
+
+    if (!todoListElement.getAttribute('data-clicked')) {
+      todoListElement.setAttribute('data-clicked', 'true');
+
+      todoListElement.contentEditable = true;
+      todoListElement.classList.remove('ellipsis');
+      todoListElement.focus();
+      todoListElement.parentElement.style.backgroundColor = '#f6d788';
+      todoListElement.nextElementSibling.style.display = 'none';
+      bin.innerHTML = '&#128465;';
+      bin.style.display = 'inline';
+    } else {
+      todoListElement.removeAttribute('data-clicked');
+
+      todoListElement.contentEditable = false;
+      todoListElement.classList.add('ellipsis');
+      todoListElement.parentElement.style.backgroundColor = 'white';
+      todoListElement.nextElementSibling.style.display = 'inline';
+      bin.innerHTML = '';
+      bin.style.display = 'none';
+      const indexOfTodoElement = todo.index;
+
+      console.log(indexOfTodoElement);
+
+      todoArray.forEach((todo) => {
+        if (todo.index === Number(indexOfTodoElement)) {
+          todo.description = todoListElement.innerText;
+        }
+      });
+      localStorage.setItem('todoList', JSON.stringify(todoArray));
+    }
+
+    // bin.addEventListener('click', () => {
+    //   bin.parentElement.remove();
+    //   bin.parentElement.nextElementSibling.remove();
+    //   todoArray.splice(indx, 1);
+    //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+    // });
+  });
 });
 
 document.getElementById('todo-footer-button').addEventListener('click', () => {
@@ -158,12 +262,14 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
     todoListItemContainer.appendChild(todoListCheck);
 
     const todoListElement = document.createElement('span');
-    todoListElement.classList.add('ellipsis');
+    todoListElement.classList.add('ellipsis', 'edit-todo');
+    todoListCheck.setAttribute('id', `todo-list-desc-${todo.index}`);
     todoListElement.innerText = todo.description;
 
     todoListItemContainer.appendChild(todoListElement);
 
     const threeDotIcon = document.createElement('span');
+    threeDotIcon.classList.add('hover-three-dot');
     threeDotIcon.innerHTML = '&#8942;';
     todoListItemContainer.appendChild(threeDotIcon);
 
@@ -179,7 +285,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       if (todoListCheck.checked === true) {
         todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
         todoListCheck.nextElementSibling.style.opacity = '0.5';
-        const indexOfTodoElement = todoListCheck.id.split('').pop();
+        const indexOfTodoElement = todo.index;
         todoArray.forEach((todo) => {
           if (todo.index === Number(indexOfTodoElement)) {
             todo.completed = true;
@@ -197,6 +303,52 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         });
         localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
+    });
+
+    const bin = document.createElement('span');
+    bin.classList.add('hover-bin');
+    todoListElement.parentElement.appendChild(bin);
+
+    todoListElement.addEventListener('click', () => {
+      console.log(todoListElement.getAttribute('data-clicked'));
+
+      if (!todoListElement.getAttribute('data-clicked')) {
+        todoListElement.setAttribute('data-clicked', 'true');
+
+        todoListElement.contentEditable = true;
+        todoListElement.classList.remove('ellipsis');
+        todoListElement.focus();
+        todoListElement.parentElement.style.backgroundColor = '#f6d788';
+        todoListElement.nextElementSibling.style.display = 'none';
+        bin.innerHTML = '&#128465;';
+        bin.style.display = 'inline';
+      } else {
+        todoListElement.removeAttribute('data-clicked');
+
+        todoListElement.contentEditable = false;
+        todoListElement.classList.add('ellipsis');
+        todoListElement.parentElement.style.backgroundColor = 'white';
+        todoListElement.nextElementSibling.style.display = 'inline';
+        bin.innerHTML = '';
+        bin.style.display = 'none';
+        const indexOfTodoElement = todoListElement.id.split('').pop();
+
+        console.log(indexOfTodoElement);
+
+        todoArray.forEach((todo) => {
+          if (todo.index === Number(indexOfTodoElement)) {
+            todo.description = todoListElement.innerText;
+          }
+        });
+        localStorage.setItem('todoList', JSON.stringify(todoArray));
+      }
+
+      // bin.addEventListener('click', () => {
+      //   bin.parentElement.remove();
+      //   bin.parentElement.nextElementSibling.remove();
+      //   todoArray.splice(indx, 1);
+      //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+      // });
     });
   });
 });

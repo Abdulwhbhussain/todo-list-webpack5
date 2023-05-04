@@ -39,7 +39,7 @@ div {
 }
 
 .todo-element-padding {
-  padding: 8px 15px;
+  padding: 20px 15px;
 }
 
 #todo-footer-button {
@@ -165,4 +165,26 @@ div {
   margin: 0;
   list-style: none;
   align-items: center;
+}
+
+.hover-three-dot:hover {
+  opacity: 1;
+  cursor: all-scroll;
+}
+
+.hover-bin:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.edit-todo {
+  cursor: pointer;
+}
+
+[contentEditable] {
+  outline: 0px solid transparent;
+}
+
+hr {
+  margin: 0;
 }
