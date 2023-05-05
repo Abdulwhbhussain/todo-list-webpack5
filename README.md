@@ -23,7 +23,7 @@
     - [5- NPM](#5--npm)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
-  - [� Getting Started ](#-getting-started-)
+  - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [1- Web Browser](#1--web-browser)
     - [2- Code Editor](#2--code-editor)
@@ -34,6 +34,8 @@
     - [Setup](#setup)
     - [Install](#install)
     - [Usage](#usage)
+    - [Run tests](#run-tests)
+    - [Deployment](#deployment)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -134,7 +136,20 @@ To run the project, execute the following command:
 > npm run start 
 
 
+### Run tests
+
+> Coming Soon!
+
+### Deployment
+
+> Here is the Link to this Live Project:
+
+> https://abdulwhbhussain.github.io/todo-list-webpack5/dist/
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- AUTHORS -->
 
