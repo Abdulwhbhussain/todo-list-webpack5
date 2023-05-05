@@ -146,7 +146,7 @@ To run the project, execute the following command:
 
 > Here is the Link to this Live Project:
 
-> https://abdulwhbhussain.github.io/todo-list-webpack5/dist/
+> https://abdulwhbhussain.github.io/todo-list-webpack5
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
