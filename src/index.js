@@ -2,6 +2,7 @@ import './style.css';
 import todoAdd from './modules/add';
 import todoRemove from './modules/remove';
 import todoEdit from './modules/edit';
+import todoCheck from './modules/completeCheck';
 
 const InputElementTodo = document.getElementById('todo-input');
 
@@ -62,18 +63,7 @@ const todoListRender = (desc, complete, indx) => {
     .appendChild(document.createElement('hr'));
 
   todoListCheck.addEventListener('click', () => {
-    if (todoListCheck.checked === true) {
-      todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
-      todoListCheck.nextElementSibling.style.opacity = '0.5';
-
-      todoArray[indx - 1].completed = true;
-    } else {
-      todoListCheck.nextElementSibling.style.textDecoration = 'none';
-      todoListCheck.nextElementSibling.style.opacity = '1';
-
-      todoArray[indx - 1].completed = false;
-    }
-    localStorage.setItem('todoList', JSON.stringify(todoArray));
+    todoCheck(todoListCheck, todoArray, indx);
   });
 
   const bin = document.createElement('span');
