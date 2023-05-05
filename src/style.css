@@ -39,7 +39,7 @@ div {
 }
 
 .todo-element-padding {
-  padding: 8px 15px;
+  padding: 20px 15px;
 }
 
 #todo-footer-button {
@@ -57,6 +57,11 @@ div {
   text-align: center;
   padding: 1px 6px;
   font-size: 1rem;
+}
+
+#todo-footer-button:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 /* Sync Icon */
@@ -137,10 +142,49 @@ div {
   overflow: hidden;
   resize: none;
   font-size: 1rem;
+  cursor: auto;
 }
 
 .ellipsis {
   text-overflow: ellipsis; /* enables ellipsis */
   white-space: nowrap; /* keeps the text in a single line */
   overflow: hidden; /* keeps the element from overflowing its parent */
+}
+
+#todo-enter {
+  cursor: pointer;
+}
+
+/* Apply Grid on the todo ITEM container */
+
+.todo-item-container {
+  display: grid;
+  grid-template-columns: 6% 84% 10%;
+  grid-template-rows: auto;
+  column-gap: 13px;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+}
+
+.hover-three-dot:hover {
+  opacity: 1;
+  cursor: all-scroll;
+}
+
+.hover-bin:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.edit-todo {
+  cursor: pointer;
+}
+
+[contentEditable] {
+  outline: 0 solid transparent;
+}
+
+hr {
+  margin: 0;
 }

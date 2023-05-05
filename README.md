@@ -23,8 +23,7 @@
     - [5- NPM](#5--npm)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
-  - [🚀 Live Demo ](#-live-demo-)
-  - [💻 Getting Started ](#-getting-started-)
+  - [� Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [1- Web Browser](#1--web-browser)
     - [2- Code Editor](#2--code-editor)
@@ -35,8 +34,6 @@
     - [Setup](#setup)
     - [Install](#install)
     - [Usage](#usage)
-    - [Run tests](#run-tests)
-    - [Deployment](#deployment)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -80,16 +77,6 @@ This is My ToDo List Project of Module 2 in Microverse which is A Dynamic and Re
 - **Mobile Responsive**
 - **Friendly UX**
 - **Easy to use**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-> <a href="" name="live-demo"></a>
-
-> <a href="">Coming Soon!</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,15 +132,7 @@ Run This Command:
 To run the project, execute the following command:
 
 > npm run start 
-### Run tests
 
-> Coming Soon!
-
-### Deployment
-
-> Here is the Link to this Live Project:
-
-> Coming Soon!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
