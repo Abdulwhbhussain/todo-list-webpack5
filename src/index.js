@@ -107,9 +107,9 @@ const todoListRender = (desc, complete, indx) => {
           document
             .getElementsByClassName('edit-todo')
             [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
-        });
 
-        localStorage.setItem('todoList', JSON.stringify(todoArray));
+          localStorage.setItem('todoList', JSON.stringify(todoArray));
+        });
       };
     } else {
       todoListElement.removeAttribute('data-clicked');
