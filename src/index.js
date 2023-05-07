@@ -62,6 +62,16 @@ const todoListRender = (desc, complete, indx) => {
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
 
+  if (todo.completed) {
+    todoListCheck.checked = true;
+    todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
+    todoListCheck.nextElementSibling.style.opacity = '0.5';
+  } else {
+    todoListCheck.checked = false;
+    todoListCheck.nextElementSibling.style.textDecoration = 'none';
+    todoListCheck.nextElementSibling.style.opacity = '1';
+  }
+
   todoListCheck.addEventListener('click', () => {
     todoCheck(todoListCheck, todoArray, indx);
   });
@@ -98,9 +108,15 @@ const todoListRender = (desc, complete, indx) => {
         todoArray.forEach((todo, ind) => {
           todo.index = ind + 1;
 
-          document.getElementsByClassName('todo-item-container')[ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-          document.getElementsByClassName('todo-list-check')[ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-          document.getElementsByClassName('edit-todo')[ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-item-container')
+            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-list-check')
+            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+          document
+            .getElementsByClassName('edit-todo')
+            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
         });
 
         localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -231,9 +247,15 @@ todoArray.forEach((todo) => {
         todoArray.forEach((todo, ind) => {
           todo.index = ind + 1;
 
-          document.getElementsByClassName('todo-item-container')[ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-          document.getElementsByClassName('todo-list-check')[ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-          document.getElementsByClassName('edit-todo')[ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-item-container')
+            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+          document
+            .getElementsByClassName('todo-list-check')
+            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+          document
+            .getElementsByClassName('edit-todo')
+            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
         });
 
         localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -308,16 +330,15 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       .getElementById('todo-list-element')
       .appendChild(document.createElement('hr'));
 
-      if (todo.completed) {
-        todoListCheck.checked = true;
-        todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
-        todoListCheck.nextElementSibling.style.opacity = '0.5';
-      } else {
-        todoListCheck.checked = false;
-        todoListCheck.nextElementSibling.style.textDecoration = 'none';
-        todoListCheck.nextElementSibling.style.opacity = '1';
-      }
-    
+    if (todo.completed) {
+      todoListCheck.checked = true;
+      todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
+      todoListCheck.nextElementSibling.style.opacity = '0.5';
+    } else {
+      todoListCheck.checked = false;
+      todoListCheck.nextElementSibling.style.textDecoration = 'none';
+      todoListCheck.nextElementSibling.style.opacity = '1';
+    }
 
     todoListCheck.addEventListener('click', () => {
       if (todoListCheck.checked === true) {
@@ -369,9 +390,15 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
           todoArray.forEach((todo, ind) => {
             todo.index = ind + 1;
 
-            document.getElementsByClassName('todo-item-container')[ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-            document.getElementsByClassName('todo-list-check')[ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-            document.getElementsByClassName('edit-todo')[ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
+            document
+              .getElementsByClassName('todo-item-container')
+              [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
+            document
+              .getElementsByClassName('todo-list-check')
+              [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
+            document
+              .getElementsByClassName('edit-todo')
+              [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
           });
           localStorage.setItem('todoList', JSON.stringify(todoArray));
         };
