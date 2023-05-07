@@ -62,16 +62,6 @@ const todoListRender = (desc, complete, indx) => {
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
 
-  if (todo.completed) {
-    todoListCheck.checked = true;
-    todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
-    todoListCheck.nextElementSibling.style.opacity = '0.5';
-  } else {
-    todoListCheck.checked = false;
-    todoListCheck.nextElementSibling.style.textDecoration = 'none';
-    todoListCheck.nextElementSibling.style.opacity = '1';
-  }
-
   todoListCheck.addEventListener('click', () => {
     todoCheck(todoListCheck, todoArray, indx);
   });
@@ -187,16 +177,6 @@ todoArray.forEach((todo) => {
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
 
-  if (todo.completed) {
-    todoListCheck.checked = true;
-    todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
-    todoListCheck.nextElementSibling.style.opacity = '0.5';
-  } else {
-    todoListCheck.checked = false;
-    todoListCheck.nextElementSibling.style.textDecoration = 'none';
-    todoListCheck.nextElementSibling.style.opacity = '1';
-  }
-
   todoListCheck.addEventListener('click', () => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
@@ -220,6 +200,38 @@ todoArray.forEach((todo) => {
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
   });
+
+  // threeDotIcon.addEventListener('dragstart', (e) => {
+  //   e.dataTransfer.setData('text/plain', todoListElement.id);
+  // });
+
+  // threeDotIcon.addEventListener('dragover', (e) => {
+  //   e.preventDefault();
+  // });
+
+  // threeDotIcon.addEventListener('drop', (e) => {
+  //   e.preventDefault();
+  //   const data = e.dataTransfer.getData('text/plain');
+  //   const draggedElement = document.getElementById(data);
+  //   const draggedElementIndex = draggedElement.id.split('').pop();
+  //   const dropElementIndex = todoListElement.id.split('').pop();
+
+  //   const draggedElementDescription = draggedElement.innerText;
+  //   const dropElementDescription = todoListElement.innerText;
+
+  //   todoArray.forEach((todo) => {
+  //     if (todo.index === Number(draggedElementIndex)) {
+  //       todo.description = dropElementDescription;
+  //     } else if (todo.index === Number(dropElementIndex)) {
+  //       todo.description = draggedElementDescription;
+  //     }
+  //   });
+
+  //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+  //   draggedElement.innerText = dropElementDescription;
+  //   todoListElement.innerText = draggedElementDescription;
+  // });
 
   const bin = document.createElement('span');
   bin.classList.add('hover-bin');
