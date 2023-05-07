@@ -171,6 +171,16 @@ todoArray.forEach((todo) => {
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
 
+  if (todo.completed) {
+    todoListCheck.checked = true;
+    todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
+    todoListCheck.nextElementSibling.style.opacity = '0.5';
+  } else {
+    todoListCheck.checked = false;
+    todoListCheck.nextElementSibling.style.textDecoration = 'none';
+    todoListCheck.nextElementSibling.style.opacity = '1';
+  }
+
   todoListCheck.addEventListener('click', () => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
