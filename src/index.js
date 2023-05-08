@@ -4,6 +4,8 @@ import todoRemove from './modules/remove';
 import todoEdit from './modules/edit';
 import todoCheck from './modules/completeCheck';
 
+const script = document.getElementsByTagName('script');
+
 const InputElementTodo = document.getElementById('todo-input');
 
 if (!localStorage.getItem('input')) {
@@ -50,10 +52,6 @@ const todoListRender = (desc, complete, indx) => {
   threeDotIcon.innerHTML = '&#8942;';
   todoListItemContainer.appendChild(threeDotIcon);
 
-  // threeDotIcon.addEventListener('click', () => {
-  //   threeDotIcon.parentElement.style.backgroundColor = '#f2f2f2';
-  // });
-
   document
     .getElementById('todo-list-element')
     .appendChild(todoListItemContainer);
@@ -61,10 +59,6 @@ const todoListRender = (desc, complete, indx) => {
   document
     .getElementById('todo-list-element')
     .appendChild(document.createElement('hr'));
-
-  todoListCheck.addEventListener('click', () => {
-    todoCheck(todoListCheck, todoArray, indx);
-  });
 
   const bin = document.createElement('span');
   bin.classList.add('hover-bin');
@@ -82,35 +76,22 @@ const todoListRender = (desc, complete, indx) => {
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
-      bin.onclick = () => {
-        todoListElement.contentEditable = false;
-        todoListElement.classList.add('ellipsis');
-        todoListElement.parentElement.style.backgroundColor = 'white';
-        todoListElement.style.cursor = 'pointer';
-        todoListElement.nextElementSibling.style.display = 'inline';
-        bin.innerHTML = '';
-        bin.style.display = 'none';
-
-        document.querySelector(`#todo-list-container-${indx} + hr`).remove();
-        document.getElementById(`todo-list-container-${indx}`).remove();
-
-        todoArray = todoAdd(todoArray, indx);
+      bin.addEventListener('click', () => {
+        console.log('bin clicked');
+        todoArray[indx - 1].completed = true;
+        console.log(todoArray);
+        console.log(todoArray[indx - 1]);
+        todoArray = todoRemove(todoArray);
+        console.log(todoArray);
         todoArray.forEach((todo, ind) => {
           todo.index = ind + 1;
-
-          document
-            .getElementsByClassName('todo-item-container')
-            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-          document
-            .getElementsByClassName('todo-list-check')
-            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-          document
-            .getElementsByClassName('edit-todo')
-            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
-
-          localStorage.setItem('todoList', JSON.stringify(todoArray));
         });
-      };
+        console.log(todoArray);
+        localStorage.setItem('todoList', JSON.stringify(todoArray));
+        // todoListElement.parentElement.nextElementSibling.remove();
+        // todoListElement.parentElement.siblings.todoListElement.parentElement.remove();
+        location.reload();
+      });
     } else {
       todoListElement.removeAttribute('data-clicked');
 
@@ -127,6 +108,10 @@ const todoListRender = (desc, complete, indx) => {
       todoEdit(todoArray, indexOfTodoElement, todoListElement.innerText);
       localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
+  });
+
+  todoListCheck.addEventListener('click', () => {
+    todoCheck(todoListCheck, todoArray, indx);
   });
 };
 
@@ -181,23 +166,27 @@ todoArray.forEach((todo) => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
       todoListCheck.nextElementSibling.style.opacity = '0.5';
-      const indexOfTodoElement = todoListCheck.id.split('').pop();
-      todoArray.forEach((tod) => {
-        if (tod.index === Number(indexOfTodoElement)) {
-          tod.completed = true;
-        }
-      });
+      const indexOfTodoElement = todo.index;
+      todoArray[todo.index - 1].completed = true;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
+      // todoArray.forEach((tod) => {
+      //   if (tod.index === Number(indexOfTodoElement)) {
+      //     tod.completed = true;
+      //   }
+
+      // });
     } else {
       todoListCheck.nextElementSibling.style.textDecoration = 'none';
       todoListCheck.nextElementSibling.style.opacity = '1';
-      const indexOfTodoElement = todoListCheck.id.split('').pop();
-      todoArray.forEach((tod) => {
-        if (tod.index === Number(indexOfTodoElement)) {
-          tod.completed = false;
-        }
-      });
+      const indexOfTodoElement = todo.index;
+      todoArray[todo.index - 1].completed = false;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
+      // todoArray.forEach((tod) => {
+      //   if (tod.index === Number(indexOfTodoElement)) {
+      //     tod.completed = false;
+      //   }
+      //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+      // });
     }
   });
 
@@ -249,29 +238,24 @@ todoArray.forEach((todo) => {
       todoListElement.nextElementSibling.style.display = 'none';
       bin.innerHTML = '&#128465;';
       bin.style.display = 'inline';
-      bin.onclick = () => {
-        document
-          .querySelector(`#todo-list-container-${todo.index} + hr`)
-          .remove();
-        document.getElementById(`todo-list-container-${todo.index}`).remove();
-
-        todoArray = todoAdd(todoArray, todo.index);
+      bin.addEventListener('click', () => {
+        console.log('bin clicked');
+        todoArray[todo.index - 1].completed = true;
+        console.log(todoArray);
+        console.log(todoArray[todo.index - 1]);
+        todoArray = todoRemove(todoArray);
+        console.log(todoArray);
         todoArray.forEach((todo, ind) => {
           todo.index = ind + 1;
-
-          document
-            .getElementsByClassName('todo-item-container')
-            [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-          document
-            .getElementsByClassName('todo-list-check')
-            [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-          document
-            .getElementsByClassName('edit-todo')
-            [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
         });
-
+        console.log(todoArray);
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-      };
+        // todoListElement.parentElement.nextElementSibling.remove();
+        // console.log('hr removed!');
+        // todoListElement.parentElement.remove();
+        // console.log('container removed!');
+        location.reload();
+      });
     } else {
       todoListElement.removeAttribute('data-clicked');
 
@@ -283,13 +267,15 @@ todoArray.forEach((todo) => {
       bin.innerHTML = '';
       bin.style.display = 'none';
       const indexOfTodoElement = todo.index;
-
-      todoArray.forEach((tod) => {
-        if (tod.index === Number(indexOfTodoElement)) {
-          tod.description = todoListElement.innerText;
-        }
-      });
+      todoArray[todo.index - 1].description = todoListElement.innerText;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+      // todoArray.forEach((tod) => {
+      //   if (tod.index === Number(indexOfTodoElement)) {
+      //     tod.description = todoListElement.innerText;
+      //   }
+      // });
+      // localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
   });
 });
@@ -342,37 +328,32 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       .getElementById('todo-list-element')
       .appendChild(document.createElement('hr'));
 
-    if (todo.completed) {
-      todoListCheck.checked = true;
-      todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
-      todoListCheck.nextElementSibling.style.opacity = '0.5';
-    } else {
-      todoListCheck.checked = false;
-      todoListCheck.nextElementSibling.style.textDecoration = 'none';
-      todoListCheck.nextElementSibling.style.opacity = '1';
-    }
-
     todoListCheck.addEventListener('click', () => {
       if (todoListCheck.checked === true) {
         todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
         todoListCheck.nextElementSibling.style.opacity = '0.5';
         const indexOfTodoElement = todo.index;
-        todoArray.forEach((tod) => {
-          if (tod.index === Number(indexOfTodoElement)) {
-            tod.completed = true;
-          }
-        });
+        todoArray[todo.index - 1].completed = true;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
+        // todoArray.forEach((tod) => {
+        //   if (tod.index === Number(indexOfTodoElement)) {
+        //     tod.completed = true;
+        //   }
+        // });
+        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       } else {
         todoListCheck.nextElementSibling.style.textDecoration = 'none';
         todoListCheck.nextElementSibling.style.opacity = '1';
-        const indexOfTodoElement = todoListCheck.id.split('').pop();
-        todoArray.forEach((tod) => {
-          if (tod.index === Number(indexOfTodoElement)) {
-            tod.completed = false;
-          }
-        });
+        const indexOfTodoElement = todo.index;
+        todoArray[todo.index - 1].completed = false;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+        // todoArray.forEach((tod) => {
+        //   if (tod.index === Number(indexOfTodoElement)) {
+        //     tod.completed = false;
+        //   }
+        // });
+        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
     });
 
@@ -392,28 +373,22 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.nextElementSibling.style.display = 'none';
         bin.innerHTML = '&#128465;';
         bin.style.display = 'inline';
-        bin.onclick = () => {
-          document
-            .querySelector(`#todo-list-container-${todo.index} + hr`)
-            .remove();
-          document.getElementById(`todo-list-container-${todo.index}`).remove();
-
-          todoArray = todoAdd(todoArray, todo.index);
+        bin.addEventListener('click', () => {
+          console.log('bin clicked');
+          todoArray[todo.index - 1].completed = true;
+          console.log(todoArray);
+          console.log(todoArray[todo.index - 1]);
+          todoArray = todoRemove(todoArray);
+          console.log(todoArray);
           todoArray.forEach((todo, ind) => {
             todo.index = ind + 1;
-
-            document
-              .getElementsByClassName('todo-item-container')
-              [ind].setAttribute('id', `todo-list-container-${ind + 1}`);
-            document
-              .getElementsByClassName('todo-list-check')
-              [ind].setAttribute('id', `todo-list-check-${ind + 1}`);
-            document
-              .getElementsByClassName('edit-todo')
-              [ind].setAttribute('id', `todo-list-desc-${ind + 1}`);
           });
+          console.log(todoArray);
           localStorage.setItem('todoList', JSON.stringify(todoArray));
-        };
+          // todoListElement.parentElement.nextElementSibling.remove();
+          // todoListElement.parentElement.remove();
+          location.reload();
+        });
       } else {
         todoListElement.removeAttribute('data-clicked');
 
@@ -425,13 +400,15 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         bin.innerHTML = '';
         bin.style.display = 'none';
         const indexOfTodoElement = todo.index;
-
-        todoArray.forEach((tod) => {
-          if (tod.index === Number(indexOfTodoElement)) {
-            tod.description = todoListElement.innerText;
-          }
-        });
+        todoArray[todo.index - 1].description = todoListElement.innerText;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+        // todoArray.forEach((tod) => {
+        //   if (tod.index === Number(indexOfTodoElement)) {
+        //     tod.description = todoListElement.innerText;
+        //   }
+        // });
+        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
     });
   });
