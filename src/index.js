@@ -389,7 +389,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
           localStorage.setItem('todoList', JSON.stringify(todoArray));
           // todoListElement.parentElement.nextElementSibling.remove();
           // todoListElement.parentElement.remove();
-          location.reload();
+          // location.reload();
         });
       } else {
         todoListElement.removeAttribute('data-clicked');
