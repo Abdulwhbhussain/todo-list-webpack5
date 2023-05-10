@@ -274,7 +274,7 @@ document.getElementById('todo-enter').addEventListener('click', () => {
   todoArray.push({
     description: descriptionTodo,
     completed: false,
-    index: todoArray.length === 0 ? 1 : todoArray.length + 1
+    index: todoArray.length === 0 ? 1 : todoArray.length + 1,
   });
 
   localStorage.setItem('todoList', JSON.stringify(todoArray));
@@ -300,7 +300,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
     todoListItemContainer.classList.add('todo-item-container');
     todoListItemContainer.setAttribute(
       'id',
-      `todo-list-container-${todo.index}`
+      `todo-list-container-${todo.index}`,
     );
 
     const todoListCheck = document.createElement('input');
