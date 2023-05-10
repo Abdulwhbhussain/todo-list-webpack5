@@ -333,7 +333,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       if (todoListCheck.checked === true) {
         todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
         todoListCheck.nextElementSibling.style.opacity = '0.5';
-        const indexOfTodoElement = todo.index;
+        // const indexOfTodoElement = todo.index;
         todoArray[todo.index - 1].completed = true;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
         // todoArray.forEach((tod) => {
@@ -345,7 +345,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       } else {
         todoListCheck.nextElementSibling.style.textDecoration = 'none';
         todoListCheck.nextElementSibling.style.opacity = '1';
-        const indexOfTodoElement = todo.index;
+        // const indexOfTodoElement = todo.index;
         todoArray[todo.index - 1].completed = false;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
 
