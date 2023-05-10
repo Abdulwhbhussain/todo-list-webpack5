@@ -15,14 +15,7 @@ InputElementTodo.addEventListener('change', (e) => {
   localStorage.setItem('input', `${e.target.value}`);
 });
 
-let todoArray = [
-  { description: 'Ali ka Baap', completed: false, index: 1 },
-  { description: 'Abu ka Baap', completed: false, index: 2 },
-  { description: 'Baap ka Baap', completed: false, index: 3 },
-  { description: 'Mama ka Baap', completed: false, index: 4 },
-  { description: 'Chacha ka Baap', completed: false, index: 5 },
-  { description: 'Taya ka Baap', completed: false, index: 6 },
-];
+let todoArray = [];
 
 if (!localStorage.getItem('todoList')) {
   localStorage.setItem('todoList', JSON.stringify(todoArray));
