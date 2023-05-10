@@ -1,5 +1,5 @@
 import './style.css';
-import todoAdd from './modules/add';
+// import todoAdd from './modules/add';
 import todoRemove from './modules/remove';
 import todoEdit from './modules/edit';
 import todoCheck from './modules/completeCheck';
@@ -62,7 +62,7 @@ todoArray.forEach((todo) => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
       todoListCheck.nextElementSibling.style.opacity = '0.5';
-      const indexOfTodoElement = todo.index;
+      // const indexOfTodoElement = todo.index;
       todoArray[todo.index - 1].completed = true;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
       // todoArray.forEach((tod) => {
@@ -74,7 +74,7 @@ todoArray.forEach((todo) => {
     } else {
       todoListCheck.nextElementSibling.style.textDecoration = 'none';
       todoListCheck.nextElementSibling.style.opacity = '1';
-      const indexOfTodoElement = todo.index;
+      // const indexOfTodoElement = todo.index;
       todoArray[todo.index - 1].completed = false;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
       // todoArray.forEach((tod) => {
@@ -151,7 +151,8 @@ todoArray.forEach((todo) => {
         // console.log('hr removed!');
         // todoListElement.parentElement.remove();
         // console.log('container removed!');
-        location.reload();
+
+        // location.reload();
       });
     } else {
       todoListElement.removeAttribute('data-clicked');
@@ -163,7 +164,7 @@ todoArray.forEach((todo) => {
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
-      const indexOfTodoElement = todo.index;
+      // const indexOfTodoElement = todo.index;
       todoArray[todo.index - 1].description = todoListElement.innerText;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
 
@@ -240,7 +241,7 @@ const todoListRender = (desc, complete, indx) => {
         localStorage.setItem('todoList', JSON.stringify(todoArray));
         // todoListElement.parentElement.nextElementSibling.remove();
         // todoListElement.parentElement.siblings.todoListElement.parentElement.remove();
-        location.reload();
+        // location.reload();
       });
     } else {
       todoListElement.removeAttribute('data-clicked');
@@ -400,7 +401,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.nextElementSibling.style.display = 'inline';
         bin.innerHTML = '';
         bin.style.display = 'none';
-        const indexOfTodoElement = todo.index;
+        // const indexOfTodoElement = todo.index;
         todoArray[todo.index - 1].description = todoListElement.innerText;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
 
