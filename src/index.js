@@ -62,61 +62,17 @@ todoArray.forEach((todo) => {
     if (todoListCheck.checked === true) {
       todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
       todoListCheck.nextElementSibling.style.opacity = '0.5';
-      // const indexOfTodoElement = todo.index;
+
       todoArray[todo.index - 1].completed = true;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
-      // todoArray.forEach((tod) => {
-      //   if (tod.index === Number(indexOfTodoElement)) {
-      //     tod.completed = true;
-      //   }
-
-      // });
     } else {
       todoListCheck.nextElementSibling.style.textDecoration = 'none';
       todoListCheck.nextElementSibling.style.opacity = '1';
-      // const indexOfTodoElement = todo.index;
+
       todoArray[todo.index - 1].completed = false;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
-      // todoArray.forEach((tod) => {
-      //   if (tod.index === Number(indexOfTodoElement)) {
-      //     tod.completed = false;
-      //   }
-      //   localStorage.setItem('todoList', JSON.stringify(todoArray));
-      // });
     }
   });
-
-  // threeDotIcon.addEventListener('dragstart', (e) => {
-  //   e.dataTransfer.setData('text/plain', todoListElement.id);
-  // });
-
-  // threeDotIcon.addEventListener('dragover', (e) => {
-  //   e.preventDefault();
-  // });
-
-  // threeDotIcon.addEventListener('drop', (e) => {
-  //   e.preventDefault();
-  //   const data = e.dataTransfer.getData('text/plain');
-  //   const draggedElement = document.getElementById(data);
-  //   const draggedElementIndex = draggedElement.id.split('').pop();
-  //   const dropElementIndex = todoListElement.id.split('').pop();
-
-  //   const draggedElementDescription = draggedElement.innerText;
-  //   const dropElementDescription = todoListElement.innerText;
-
-  //   todoArray.forEach((todo) => {
-  //     if (todo.index === Number(draggedElementIndex)) {
-  //       todo.description = dropElementDescription;
-  //     } else if (todo.index === Number(dropElementIndex)) {
-  //       todo.description = draggedElementDescription;
-  //     }
-  //   });
-
-  //   localStorage.setItem('todoList', JSON.stringify(todoArray));
-
-  //   draggedElement.innerText = dropElementDescription;
-  //   todoListElement.innerText = draggedElementDescription;
-  // });
 
   const bin = document.createElement('span');
   bin.classList.add('hover-bin');
@@ -147,12 +103,6 @@ todoArray.forEach((todo) => {
         });
         console.log(todoArray);
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-        // todoListElement.parentElement.nextElementSibling.remove();
-        // console.log('hr removed!');
-        // todoListElement.parentElement.remove();
-        // console.log('container removed!');
-
-        // location.reload();
       });
     } else {
       todoListElement.removeAttribute('data-clicked');
@@ -164,16 +114,9 @@ todoArray.forEach((todo) => {
       todoListElement.nextElementSibling.style.display = 'inline';
       bin.innerHTML = '';
       bin.style.display = 'none';
-      // const indexOfTodoElement = todo.index;
+
       todoArray[todo.index - 1].description = todoListElement.innerText;
       localStorage.setItem('todoList', JSON.stringify(todoArray));
-
-      // todoArray.forEach((tod) => {
-      //   if (tod.index === Number(indexOfTodoElement)) {
-      //     tod.description = todoListElement.innerText;
-      //   }
-      // });
-      // localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
   });
 });
@@ -239,9 +182,6 @@ const todoListRender = (desc, complete, indx) => {
         });
         console.log(todoArray);
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-        // todoListElement.parentElement.nextElementSibling.remove();
-        // todoListElement.parentElement.siblings.todoListElement.parentElement.remove();
-        // location.reload();
       });
     } else {
       todoListElement.removeAttribute('data-clicked');
@@ -333,28 +273,15 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
       if (todoListCheck.checked === true) {
         todoListCheck.nextElementSibling.style.textDecoration = 'line-through';
         todoListCheck.nextElementSibling.style.opacity = '0.5';
-        // const indexOfTodoElement = todo.index;
+
         todoArray[todo.index - 1].completed = true;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-        // todoArray.forEach((tod) => {
-        //   if (tod.index === Number(indexOfTodoElement)) {
-        //     tod.completed = true;
-        //   }
-        // });
-        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       } else {
         todoListCheck.nextElementSibling.style.textDecoration = 'none';
         todoListCheck.nextElementSibling.style.opacity = '1';
-        // const indexOfTodoElement = todo.index;
+
         todoArray[todo.index - 1].completed = false;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-
-        // todoArray.forEach((tod) => {
-        //   if (tod.index === Number(indexOfTodoElement)) {
-        //     tod.completed = false;
-        //   }
-        // });
-        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
     });
 
@@ -387,9 +314,6 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
           });
           console.log(todoArray);
           localStorage.setItem('todoList', JSON.stringify(todoArray));
-          // todoListElement.parentElement.nextElementSibling.remove();
-          // todoListElement.parentElement.remove();
-          // location.reload();
         });
       } else {
         todoListElement.removeAttribute('data-clicked');
@@ -401,16 +325,8 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
         todoListElement.nextElementSibling.style.display = 'inline';
         bin.innerHTML = '';
         bin.style.display = 'none';
-        // const indexOfTodoElement = todo.index;
         todoArray[todo.index - 1].description = todoListElement.innerText;
         localStorage.setItem('todoList', JSON.stringify(todoArray));
-
-        // todoArray.forEach((tod) => {
-        //   if (tod.index === Number(indexOfTodoElement)) {
-        //     tod.description = todoListElement.innerText;
-        //   }
-        // });
-        // localStorage.setItem('todoList', JSON.stringify(todoArray));
       }
     });
   });
