@@ -4,7 +4,7 @@
   "description": "This is A Project assigned by Microverse.",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "build": "webpack",
     "start": "webpack serve --open --hot --mode production",
     "deploy": "gh-pages -d dist"
@@ -39,6 +39,8 @@
     "webpack-dev-server": "^4.13.3"
   },
   "dependencies": {
+    "globally": "^0.0.0",
+    "jest": "^29.5.0",
     "lodash": "^4.17.21"
   }
 }
