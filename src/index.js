@@ -26,18 +26,20 @@ console.log(todoArray);
 renderOnLoad(todoArray);
 
 document.getElementById('todo-enter').addEventListener('click', () => {
-  const descriptionTodo = InputElementTodo.value;
-  InputElementTodo.value = '';
-  localStorage.setItem('input', InputElementTodo.value);
+  if (InputElementTodo.value !== '') {
+    const descriptionTodo = InputElementTodo.value;
+    InputElementTodo.value = '';
+    localStorage.setItem('input', InputElementTodo.value);
 
-  todoArray.push({
-    description: descriptionTodo,
-    completed: false,
-    index: todoArray.length === 0 ? 1 : todoArray.length + 1,
-  });
+    todoArray.push({
+      description: descriptionTodo,
+      completed: false,
+      index: todoArray.length === 0 ? 1 : todoArray.length + 1,
+    });
 
-  localStorage.setItem('todoList', JSON.stringify(todoArray));
-  todoAdd(todoArray[todoArray.length - 1], todoArray);
+    localStorage.setItem('todoList', JSON.stringify(todoArray));
+    todoAdd(todoArray[todoArray.length - 1], todoArray);
+  }
 });
 
 document.getElementById('todo-footer-button').addEventListener('click', () => {
@@ -55,3 +57,18 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
 
   renderOnLoad(todoArray);
 });
+
+const binElements = document.querySelectorAll('.hover-bin');
+
+// binElements.forEach((binElement) => {
+//   binElement.addEventListener('click', () => {
+//     todoArray.splice(binElement.parentElement.id.split('-')[3] - 1, 1);
+//     todoArray.forEach((element, indx) => {
+//       element.index = indx + 1;
+//     });
+//     localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+//     binElement.parentElement.nextElementSibling.remove();
+//     binElement.parentElement.remove();
+//   });
+// });
