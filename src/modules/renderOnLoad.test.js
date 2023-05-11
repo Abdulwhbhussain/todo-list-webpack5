@@ -1,4 +1,5 @@
 import renderOnLoad from './renderOnLoad';
+
 jest.mock('./add.js');
 
 const testArray = [
