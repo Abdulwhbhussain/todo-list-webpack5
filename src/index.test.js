@@ -37,7 +37,7 @@ const testArray1 = [
   },
 ];
 
-const testArray1_Ans = [
+const testArray1Ans = [
   {
     description: 'Abu ka Dost',
     completed: false,
@@ -98,7 +98,7 @@ const testArray2 = [
   },
 ];
 
-const testArray2_Ans = [
+const testArray2Ans = [
   {
     description: 'Abu ka Dost',
     completed: false,
@@ -149,7 +149,7 @@ const testArray3 = [
   },
 ];
 
-const testArray3_Ans = [
+const testArray3Ans = [
   {
     description: 'Abu ka Chacha',
     completed: false,
@@ -159,12 +159,12 @@ const testArray3_Ans = [
 
 describe('Remove todo Elements using Filter ', () => {
   test('To do Remove Test 1 ', () => {
-    expect(todoRemove(testArray1)).toEqual(testArray1_Ans);
+    expect(todoRemove(testArray1)).toEqual(testArray1Ans);
   });
   test('To do Remove Test 2 ', () => {
-    expect(todoRemove(testArray2)).toEqual(testArray2_Ans);
+    expect(todoRemove(testArray2)).toEqual(testArray2Ans);
   });
   test('To do Remove Test 3 ', () => {
-    expect(todoRemove(testArray3)).toEqual(testArray3_Ans);
+    expect(todoRemove(testArray3)).toEqual(testArray3Ans);
   });
 });
