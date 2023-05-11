@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-const document = new JSDOM('<!DOCTYPE html><html><body></body></html>').window
+const { document } = new JSDOM('<!DOCTYPE html><html><body></body></html>').window
   .document;
 
 const todoList = document.createElement('div');

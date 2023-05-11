@@ -1,5 +1,5 @@
-jest.mock('./add.js');
 import renderOnLoad from './renderOnLoad';
+jest.mock('./add.js');
 
 const testArray = [
   {

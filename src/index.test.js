@@ -2,41 +2,7 @@
 
 // Need Mocks and Mutation of DOM Elements and Side Effects
 
-import renderOnLoad from './modules/renderOnLoad';
 import todoRemove from './modules/remove';
-
-const testArray = [
-  {
-    description: 'Abu ka Dost',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Abu ka Bhai',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Abu ka Rishtedar',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Abu ka Chacha',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'Abu ka Mama',
-    completed: false,
-    index: 5,
-  },
-  {
-    description: 'Abu ka Abu',
-    completed: false,
-    index: 6,
-  },
-];
 
 const testArray1 = [
   {

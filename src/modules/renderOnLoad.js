@@ -1,7 +1,7 @@
 import todoAdd from './add';
 
 function renderOnLoad(todoArr) {
-  todoArr.forEach((element, indx) => {
+  todoArr.forEach((element) => {
     todoAdd(element, todoArr);
   });
 }

@@ -58,7 +58,7 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
   renderOnLoad(todoArray);
 });
 
-const binElements = document.querySelectorAll('.hover-bin');
+// const binElements = document.querySelectorAll('.hover-bin');
 
 // binElements.forEach((binElement) => {
 //   binElement.addEventListener('click', () => {
