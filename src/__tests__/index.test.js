@@ -2,16 +2,8 @@
 
 // Need Mocks and Mutation of DOM Elements and Side Effects
 
-import defaults from '../../jest.config';
-// import { JSDOM } from 'jsdom';
 import todoAdd from '../modules/add';
 import todoRemove from '../modules/remove';
-
-// const documentHTML =
-//   '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">\
-// <title>ToDo List Webpack Project</title>\
-// </head><body></body></html>';
-// const document = new JSDOM(documentHTML);
 
 describe('testing both add and remove functions', () => {
   beforeEach(() => {
@@ -133,7 +125,7 @@ describe('testing both add and remove functions', () => {
     todoRemove(testArray1);
 
     // Check if the expected element was removed from the DOM
-    const removedItem = document.querySelector('.edit-todo').innerText;
+    // const removedItem = document.querySelector('.edit-todo').innerText;
     expect(todoRemove(testArray1)).toEqual(testArray1Ans);
   });
 });
