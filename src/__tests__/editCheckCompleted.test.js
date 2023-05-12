@@ -3,7 +3,7 @@
 
 import 'jest-localstorage-mock';
 import todoAdd from '../modules/add';
-// import todoRemove from '../modules/remove';
+import todoRemove from '../modules/remove';
 
 describe('testing both add and remove functions', () => {
   beforeEach(() => {
@@ -76,6 +76,102 @@ describe('testing both add and remove functions', () => {
     expect(todoArray[0].completed).toBe(true);
     expect(localStorage.setItem).toHaveBeenCalled();
     expect(localStorage.length).toBe(1);
+  });
+
+  test('check if a new element is changing status to checked and completed as true ', () => {
+    const todoArray = [];
+    const item = {
+      description: 'Abu ka Dost',
+      completed: false,
+      index: 1,
+    };
+
+    todoArray.push(item);
+
+    todoAdd(item, todoArray);
+
+    document.querySelector('.test-check').click();
+
+    // Check if an element with the expected text content was added to the DOM
+    expect(document.querySelector('.test-check').checked).toBe(true);
+    expect(todoArray[0].completed).toBe(true);
+    expect(localStorage.setItem).toHaveBeenCalled();
+    expect(localStorage.length).toBe(1);
+  });
+
+  const testArray1 = [
+    {
+      description: 'Abu ka Dost',
+      completed: false,
+      index: 1,
+    },
+    {
+      description: 'Abu ka Bhai',
+      completed: false,
+      index: 2,
+    },
+    {
+      description: 'Abu ka Rishtedar',
+      completed: true,
+      index: 3,
+    },
+    {
+      description: 'Abu ka Chacha',
+      completed: true,
+      index: 4,
+    },
+    {
+      description: 'Abu ka Mama',
+      completed: false,
+      index: 5,
+    },
+    {
+      description: 'Abu ka Abu',
+      completed: false,
+      index: 6,
+    },
+  ];
+
+  const testArray1Ans = [
+    {
+      description: 'Abu ka Dost',
+      completed: false,
+      index: 1,
+    },
+    {
+      description: 'Abu ka Bhai',
+      completed: false,
+      index: 2,
+    },
+    {
+      description: 'Abu ka Mama',
+      completed: false,
+      index: 5,
+    },
+    {
+      description: 'Abu ka Abu',
+      completed: false,
+      index: 6,
+    },
+  ];
+
+  test('check if it removes/clears the correct elements ', () => {
+    const todoArray = [];
+    const item = {
+      description: 'Abu ka Dost',
+      completed: false,
+      index: 1,
+    };
+
+    todoArray.push(item);
+
+    todoAdd(item, todoArray);
+
+    todoRemove(testArray1);
+
+    // Check if the expected element was removed from the DOM
+    // const removedItem = document.querySelector('.edit-todo').innerText;
+    expect(todoRemove(testArray1)).toEqual(testArray1Ans);
   });
 });
 // Testing complete
