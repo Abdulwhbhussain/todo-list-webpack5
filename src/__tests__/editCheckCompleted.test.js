@@ -72,7 +72,6 @@ describe('testing both add and remove functions', () => {
     document.querySelector('.test-check').click();
 
     // Check if an element with the expected text content was added to the DOM
-    // const addedItem = document.querySelector('.edit-todo').innerText;
     expect(document.querySelector('.test-check').checked).toBe(true);
     expect(todoArray[0].completed).toBe(true);
     expect(localStorage.setItem).toHaveBeenCalled();
