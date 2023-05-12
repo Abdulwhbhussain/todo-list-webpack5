@@ -78,3 +78,4 @@ describe('testing both add and remove functions', () => {
     expect(localStorage.length).toBe(1);
   });
 });
+// Testing completed
