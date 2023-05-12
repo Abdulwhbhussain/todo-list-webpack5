@@ -4,7 +4,7 @@
   "description": "This is A Project assigned by Microverse.",
   "private": true,
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --watchAll --verbose --coverage",
     "build": "webpack",
     "start": "webpack serve --open --hot --mode production",
     "deploy": "gh-pages -d dist"
