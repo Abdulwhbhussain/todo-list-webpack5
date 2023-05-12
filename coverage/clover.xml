@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683882746856" clover="3.2.0">
-  <project timestamp="1683882746856" name="All files">
+<coverage generated="1683883291837" clover="3.2.0">
+  <project timestamp="1683883291838" name="All files">
     <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="3" coveredelements="3" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
     <file name="remove.js" path="C:\Users\Abdul Wahab\OneDrive\Documents\Microverse\todo-list-webpack\todo-list-webpack5\src\modules\remove.js">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
