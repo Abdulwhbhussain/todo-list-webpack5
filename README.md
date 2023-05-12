@@ -163,6 +163,12 @@ To run the project, execute the following command:
 - Twitter: [@twitterhandle](https://twitter.com/AbdulWhbHussain)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdulwhbhussain)
 
+👤 **Esmatullah Qadeemi**
+
+- GitHub: [@githubhandle](https://github.com/Esmatullah12)
+- Twitter: [@twitterhandle](https://twitter.com/Esmatullah173)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/esmatullah-qadeemi-b9951821b/)
+
 
 <!-- FUTURE FEATURES -->
 
