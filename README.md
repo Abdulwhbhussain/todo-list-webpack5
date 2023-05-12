@@ -140,7 +140,7 @@ To run the project, execute the following command:
 
 ### Run tests
 
-> Coming Soon!
+> npm run test
 
 ### Deployment
 
@@ -162,6 +162,12 @@ To run the project, execute the following command:
 - GitHub: [@githubhandle](https://github.com/Abdulwhbhussain)
 - Twitter: [@twitterhandle](https://twitter.com/AbdulWhbHussain)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdulwhbhussain)
+
+👤 **Esmatullah Qadeemi**
+
+- GitHub: [@githubhandle](https://github.com/Esmatullah12)
+- Twitter: [@twitterhandle](https://twitter.com/Esmatullah173)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/esmatullah-qadeemi-b9951821b/)
 
 
 <!-- FUTURE FEATURES -->
