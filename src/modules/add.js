@@ -88,6 +88,18 @@ function todoAdd(Ele, todoArray) {
       bin.style.display = 'inline';
     }
   });
+
+  // bin.addEventListener('click', () => {
+  //   todoArray = JSON.parse(localStorage.getItem('todoList'));
+  //   todoArray.splice(bin.parentElement.id.split('-')[3] - 1, 1);
+  //   todoArray.forEach((element, indx) => {
+  //     element.index = indx + 1;
+  //   });
+  //   localStorage.setItem('todoList', JSON.stringify(todoArray));
+
+  //   bin.parentElement.nextElementSibling.remove();
+  //   bin.parentElement.remove();
+  // });
 }
 
 export default todoAdd;

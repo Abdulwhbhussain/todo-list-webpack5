@@ -57,18 +57,3 @@ document.getElementById('todo-footer-button').addEventListener('click', () => {
 
   renderOnLoad(todoArray);
 });
-
-// const binElements = document.querySelectorAll('.hover-bin');
-
-// binElements.forEach((binElement) => {
-//   binElement.addEventListener('click', () => {
-//     todoArray.splice(binElement.parentElement.id.split('-')[3] - 1, 1);
-//     todoArray.forEach((element, indx) => {
-//       element.index = indx + 1;
-//     });
-//     localStorage.setItem('todoList', JSON.stringify(todoArray));
-
-//     binElement.parentElement.nextElementSibling.remove();
-//     binElement.parentElement.remove();
-//   });
-// });
