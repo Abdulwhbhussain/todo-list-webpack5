@@ -140,7 +140,7 @@ To run the project, execute the following command:
 
 ### Run tests
 
-> Coming Soon!
+> npm run test
 
 ### Deployment
 

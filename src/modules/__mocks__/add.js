@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 
-const { document } = new JSDOM('<!DOCTYPE html><html><body></body></html>').window
-  .document;
+const { document } = new JSDOM('<!DOCTYPE html><html><body></body></html>')
+  .window.document;
 
 const todoList = document.createElement('div');
 todoList.setAttribute('id', 'todo-list-element');
