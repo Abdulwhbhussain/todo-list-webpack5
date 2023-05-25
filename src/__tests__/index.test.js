@@ -22,8 +22,7 @@ describe('testing both add and remove functions', () => {
         <div id="todo-list-element">
         </div>
         <button id="todo-footer-button" type="button" class="link-button js-clear-completed">Clear all completed</button>
-    </div>
-    <script defer="defer" src="./index.js"></script>`;
+    </div>`;
   }); // You can add the code for your form here...
 
   afterEach(() => {
